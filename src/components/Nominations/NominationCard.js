@@ -6,19 +6,18 @@ import {
   Typography,
   IconButton,
   makeStyles,
-  Grid,
 } from "@material-ui/core";
 import RemoveIcon from "@material-ui/icons/Remove";
 const useStyles = makeStyles({
   root: {
     display: "flex",
-    flexDirection: "row",
-    justifyItems: "left",
+    justifyContent: "space-around",
     margin: "5px",
   },
   image: {
-    width: "40px",
+    width: "45px",
     alignSelf: "center",
+    justifySelf: "start",
   },
   button: {
     alignSelf: "center",
@@ -28,10 +27,11 @@ export default function NominationCard(props) {
   const classes = useStyles();
   function handleClick() {
     props.removeNomination(props.imdbID);
-    // props.getNominations();
+    props.getNominations();
   }
   return (
     <Card className={classes.root}>
+      <div></div>
       <CardMedia
         className={classes.image}
         component="img"
@@ -44,7 +44,11 @@ export default function NominationCard(props) {
         <Typography variant="subtitle1">{props.Year}</Typography>
       </CardContent>
       <div className={classes.button}>
-        <IconButton aria-label="remove" onClick={handleClick}>
+        <IconButton
+          aria-label="remove"
+          onClick={handleClick}
+          title="Remove Nomination"
+        >
           <RemoveIcon></RemoveIcon>
         </IconButton>
       </div>

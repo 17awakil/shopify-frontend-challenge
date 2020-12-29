@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     width: "100%",
+    justifySelf: "center",
   },
   input: {
     marginLeft: theme.spacing(1),
@@ -41,7 +42,7 @@ export default function SearchBar(props) {
     }
   }
   return (
-    <div style={{ width: "100%", justifySelf: "center", alignSelf: "center" }}>
+    <div style={{ width: "75%", justifySelf: "center", alignSelf: "center" }}>
       <Paper component="form" className={classes.root}>
         <InputBase
           className={classes.input}

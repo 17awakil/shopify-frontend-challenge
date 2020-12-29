@@ -10,7 +10,6 @@ import {
 } from "@material-ui/core";
 import AddRoundedIcon from "@material-ui/icons/AddRounded";
 import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
-import RemoveRoundedIcon from "@material-ui/icons/RemoveRounded";
 const useStyles = makeStyles({
   root: {
     margin: "auto",
@@ -37,6 +36,36 @@ const useStyles = makeStyles({
 });
 export default function SearchResult(props) {
   const classes = useStyles();
+  function handleAdd(e) {
+    e.preventDefault();
+    const newNomination = {
+      Title: props.Title,
+      Year: props.Year,
+      imdbID: props.imdbID,
+      Poster: props.Poster,
+    };
+    props.addNomination(newNomination);
+  }
+  function AddButton() {
+    if (!props.nominations.find((nom) => nom.imdbID == props.imdbID)) {
+      return (
+        <div className={classes.buttonWrapper}>
+          <IconButton onClick={handleAdd} title="Nominate Movie">
+            <AddRoundedIcon></AddRoundedIcon>
+          </IconButton>
+        </div>
+      );
+    } else {
+      return (
+        <div className={classes.buttonWrapper}>
+          <IconButton disabled title="Already nominated">
+            <CheckRoundedIcon></CheckRoundedIcon>
+          </IconButton>
+        </div>
+      );
+    }
+  }
+
   return (
     <Card className={classes.root}>
       <CardMedia
@@ -50,17 +79,7 @@ export default function SearchResult(props) {
         <Typography variant="body1">{props.Title}</Typography>
         <Typography variant="subtitle1">{props.Year}</Typography>
       </CardContent>
-      <div className={classes.buttonWrapper}>
-        <IconButton>
-          <AddRoundedIcon></AddRoundedIcon>
-        </IconButton>
-        <IconButton>
-          <RemoveRoundedIcon></RemoveRoundedIcon>
-        </IconButton>
-      </div>
-      {/* <IconButton disabled>
-        <CheckRoundedIcon className={classes.checkButton}></CheckRoundedIcon>
-      </IconButton> */}
+      <AddButton></AddButton>
     </Card>
   );
 }

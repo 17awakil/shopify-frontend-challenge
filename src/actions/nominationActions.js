@@ -12,6 +12,7 @@ export const getNominations = () => (dispatch) => {
       "https://us-central1-shopify-frontend-challenge.cloudfunctions.net/api/nominations"
     )
     .then((nominations) => {
+      // console.log(nominations.data);
       dispatch({ type: GET_NOMINATIONS, payload: nominations.data });
     })
     .catch((e) => console.log(e));
@@ -24,6 +25,7 @@ export const addNomination = (nomination) => (dispatch) => {
       nomination
     )
     .then((res) => {
+      console.log(res.data);
       dispatch({ type: ADD_NOMINATION, payload: res.data });
     })
     .catch((e) => console.log(e));

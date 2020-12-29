@@ -37,6 +37,11 @@ function SearchResults(props) {
           Title={mov.Title}
           Year={mov.Year}
           Poster={mov.Poster}
+          // key={mov.imdbID}
+          imdbID={mov.imdbID}
+          addNomination={props.addNomination}
+          removeNomination={props.removeNomination}
+          nominations={props.nominations}
         ></SearchResult>
       </Grid>
     ));

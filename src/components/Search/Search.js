@@ -4,6 +4,11 @@ import SearchResults from "./SearchResults";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getMovies } from "../../actions/searchActions";
+import {
+  getNominations,
+  addNomination,
+  removeNomination,
+} from "../../actions/nominationActions";
 import { Grid, Typography } from "@material-ui/core";
 
 function Search(props) {
@@ -20,15 +25,31 @@ function Search(props) {
       }}
     >
       <SearchBar onSubmit={props.getMovies}></SearchBar>
-      <SearchResults movies={props.movies}></SearchResults>
+      <SearchResults
+        movies={props.movies}
+        getNominations={props.getNominations}
+        addNomination={props.addNomination}
+        removeNomination={props.removeNomination}
+        nominations={props.nominations}
+      ></SearchResults>
     </div>
   );
 }
 Search.propTypes = {
   getMovies: PropTypes.func.isRequired,
+  addNomination: PropTypes.func.isRequired,
+  removeNomination: PropTypes.func.isRequired,
+  getNominations: PropTypes.func.isRequired,
   movies: PropTypes.array,
+  nominations: PropTypes.array,
 };
 const mapStateToProps = (state) => ({
   movies: state.movies.items,
+  nominations: state.nominations.items,
 });
-export default connect(mapStateToProps, { getMovies })(Search);
+export default connect(mapStateToProps, {
+  getMovies,
+  getNominations,
+  addNomination,
+  removeNomination,
+})(Search);
