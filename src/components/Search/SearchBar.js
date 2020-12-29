@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SearchBar(props) {
   const classes = useStyles();
-  const [searchQuery, setSearchQuery] = useState("");
+  // const [searchQuery, setSearchQuery] = useState("");
   function handleKeyPress(e) {
     if (e.key === "Enter") {
       console.log(

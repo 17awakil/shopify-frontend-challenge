@@ -1,6 +1,13 @@
-import React from "react";
+import { React, useEffect } from "react";
 import { Typography, makeStyles } from "@material-ui/core";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import {
+  getNominations,
+  removeNomination,
+} from "../../actions/nominationActions";
 import NominationCard from "./NominationCard";
+
 const useStyles = makeStyles({
   root: {
     display: "flex",
@@ -11,52 +18,25 @@ const useStyles = makeStyles({
   },
 });
 
-const movies = [
-  {
-    Title: "The Godfather",
-    Year: "2007",
-    id: "tt0068646",
-    Poster:
-      "https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg",
-  },
-  {
-    Title: "The Godfather",
-    Year: "2007",
-    id: "tt0068646",
-    Poster:
-      "https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg",
-  },
-  {
-    Title: "The Godfather",
-    Year: "2007",
-    id: "tt0068646",
-    Poster:
-      "https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg",
-  },
-  {
-    Title: "The Godfather",
-    Year: "2007",
-    id: "tt0068646",
-    Poster:
-      "https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg",
-  },
-  {
-    Title: "The Godfather",
-    Year: "2007",
-    id: "tt0068646",
-    Poster:
-      "https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg",
-  },
-];
-function Nominations() {
+function Nominations(props) {
   const classes = useStyles();
-  var list = movies.map((movie) => (
-    <NominationCard
-      Title={movie.Title}
-      Poster={movie.Poster}
-      Year={movie.Year}
-    ></NominationCard>
-  ));
+  var list = [];
+  useEffect(() => {
+    props.getNominations();
+  });
+  if (props.nominations !== undefined && props.nominations instanceof Array) {
+    list = props.nominations.map((movie) => (
+      <NominationCard
+        Title={movie.Title}
+        Poster={movie.Poster}
+        Year={movie.Year}
+        key={movie.imdbID}
+        imdbID={movie.imdbID}
+        removeNomination={props.removeNomination}
+        getNominations={props.getNominations}
+      ></NominationCard>
+    ));
+  }
   return (
     <div className={classes.root}>
       <Typography variant="h6">Nominations</Typography>
@@ -64,4 +44,15 @@ function Nominations() {
     </div>
   );
 }
-export default Nominations;
+
+Nominations.propTypes = {
+  getNominations: PropTypes.func.isRequired,
+  removeNomination: PropTypes.func.isRequired,
+  nominations: PropTypes.array,
+};
+const mapStateToProps = (state) => ({
+  nominations: state.nominations.items,
+});
+export default connect(mapStateToProps, { getNominations, removeNomination })(
+  Nominations
+);

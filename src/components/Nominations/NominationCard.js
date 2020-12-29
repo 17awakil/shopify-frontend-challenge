@@ -26,6 +26,10 @@ const useStyles = makeStyles({
 });
 export default function NominationCard(props) {
   const classes = useStyles();
+  function handleClick() {
+    props.removeNomination(props.imdbID);
+    // props.getNominations();
+  }
   return (
     <Card className={classes.root}>
       <CardMedia
@@ -40,7 +44,7 @@ export default function NominationCard(props) {
         <Typography variant="subtitle1">{props.Year}</Typography>
       </CardContent>
       <div className={classes.button}>
-        <IconButton aria-label="remove">
+        <IconButton aria-label="remove" onClick={handleClick}>
           <RemoveIcon></RemoveIcon>
         </IconButton>
       </div>
