@@ -1,28 +1,24 @@
 import React from "react";
 import { Grid, Typography, makeStyles } from "@material-ui/core";
 import SearchResult from "./SearchResult";
+// import useMediaQuery from "@material-ui/core/useMediaQuery";
+// import json2mq from "json2mq";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: "1em",
     width: "100%",
     // background: "#ddd",
     padding: "1em",
-    borderRadius: "25px",
-    // overflowY: "scroll",
+    // borderRadius: "25px",
   },
   results: {
-    margin: "auto",
     display: "grid",
-    gridTemplateColumns: "repeat(5,1fr)",
+    gridTemplateColumns: "repeat(auto-fit,minmax(130px,1fr))",
     rowGap: "1em",
-    columnGap: "0.5em ",
-    gridAutoRows: "minmax(100px,auto)",
-    // display: "flex",
-    // flexDirection: "row",
-    // flexWrap: "wrap",
-    // justifyContent: "space-between",
-    padding: "0.5em",
-    // overflowY: "scroll",
+    columnGap: ".5em",
+    overflowY: "auto",
+    paddingBottom: "1em",
   },
   paper: {
     padding: "1em",
@@ -41,6 +37,7 @@ function SearchResults(props) {
           imdbID={mov.imdbID}
           addNomination={props.addNomination}
           removeNomination={props.removeNomination}
+          getNominations={props.getNominations}
           nominations={props.nominations}
         ></SearchResult>
       </Grid>

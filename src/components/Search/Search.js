@@ -9,21 +9,23 @@ import {
   addNomination,
   removeNomination,
 } from "../../actions/nominationActions";
-import { Grid, Typography } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 
 function Search(props) {
   return (
     <div
+      className="search"
       style={{
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
         padding: "1em",
-        // overflowY: "scroll",
-        // border: "1em",
       }}
     >
+      <Typography variant="h5" style={{ padding: "0.5em" }}>
+        Search
+      </Typography>
       <SearchBar onSubmit={props.getMovies}></SearchBar>
       <SearchResults
         movies={props.movies}

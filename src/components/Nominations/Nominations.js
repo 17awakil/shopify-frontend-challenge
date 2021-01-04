@@ -23,14 +23,15 @@ function Nominations(props) {
   var list = [];
   useEffect(() => {
     props.getNominations();
-  });
+  }, []);
   if (props.nominations !== undefined && props.nominations instanceof Array) {
-    list = props.nominations.map((movie) => (
+    list = props.nominations.map((movie, i) => (
       <NominationCard
         Title={movie.Title}
         Poster={movie.Poster}
         Year={movie.Year}
-        key={movie.imdbID}
+        key={i}
+        number={i}
         imdbID={movie.imdbID}
         removeNomination={props.removeNomination}
         getNominations={props.getNominations}
@@ -39,7 +40,9 @@ function Nominations(props) {
   }
   return (
     <div className={classes.root}>
-      <Typography variant="h6">Nominations</Typography>
+      <Typography variant="h5" style={{ padding: "0.5em" }}>
+        Nominations
+      </Typography>
       {list}
     </div>
   );

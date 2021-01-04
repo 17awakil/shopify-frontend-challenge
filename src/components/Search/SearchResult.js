@@ -6,7 +6,7 @@ import {
   Typography,
   IconButton,
   makeStyles,
-  Grid,
+  Snackbar,
 } from "@material-ui/core";
 import AddRoundedIcon from "@material-ui/icons/AddRounded";
 import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
@@ -18,11 +18,12 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    justifyContent: "space-between",
   },
   image: {
     width: "90px",
     alignSelf: "center",
-    background: "#ddd",
+    paddingTop: "10px",
   },
   checkButton: {
     color: "#00e676",
@@ -36,8 +37,10 @@ const useStyles = makeStyles({
 });
 export default function SearchResult(props) {
   const classes = useStyles();
-  function handleAdd(e) {
-    e.preventDefault();
+  const [open, setOpen] = React.useState(false);
+
+  function handleAdd() {
+    console.log("handle add");
     const newNomination = {
       Title: props.Title,
       Year: props.Year,
@@ -45,9 +48,10 @@ export default function SearchResult(props) {
       Poster: props.Poster,
     };
     props.addNomination(newNomination);
+    props.getNominations();
   }
   function AddButton() {
-    if (!props.nominations.find((nom) => nom.imdbID == props.imdbID)) {
+    if (!props.nominations.find((nom) => nom.imdbID === props.imdbID)) {
       return (
         <div className={classes.buttonWrapper}>
           <IconButton onClick={handleAdd} title="Nominate Movie">
@@ -77,7 +81,7 @@ export default function SearchResult(props) {
       ></CardMedia>
       <CardContent>
         <Typography variant="body1">{props.Title}</Typography>
-        <Typography variant="subtitle1">{props.Year}</Typography>
+        <Typography variant="subtitle1">({props.Year})</Typography>
       </CardContent>
       <AddButton></AddButton>
     </Card>

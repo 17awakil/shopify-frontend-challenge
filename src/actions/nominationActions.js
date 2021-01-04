@@ -7,6 +7,7 @@ import {
 } from "./types";
 
 export const getNominations = () => (dispatch) => {
+  console.log("getting nominations");
   axios
     .get(
       "https://us-central1-shopify-frontend-challenge.cloudfunctions.net/api/nominations"
@@ -19,19 +20,20 @@ export const getNominations = () => (dispatch) => {
 };
 
 export const addNomination = (nomination) => (dispatch) => {
+  console.log("add nomination");
   axios
     .post(
       "https://us-central1-shopify-frontend-challenge.cloudfunctions.net/api/nominations",
       nomination
     )
     .then((res) => {
-      console.log(res.data);
       dispatch({ type: ADD_NOMINATION, payload: res.data });
     })
     .catch((e) => console.log(e));
 };
 
 export const removeNomination = (nominationId) => (dispatch) => {
+  console.log("removing nomination");
   axios
     .delete(
       `https://us-central1-shopify-frontend-challenge.cloudfunctions.net/api/nominations/${nominationId}`
