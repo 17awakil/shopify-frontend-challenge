@@ -28,6 +28,7 @@ export const addNomination = (nomination) => (dispatch) => {
     )
     .then((res) => {
       dispatch({ type: ADD_NOMINATION, payload: res.data });
+      dispatch(getNominations());
     })
     .catch((e) => console.log(e));
 };
@@ -40,6 +41,7 @@ export const removeNomination = (nominationId) => (dispatch) => {
     )
     .then((res) => {
       dispatch({ type: REMOVE_NOMINATION, payload: res.data });
+      dispatch(getNominations());
     })
     .catch((e) => console.log(e));
 };

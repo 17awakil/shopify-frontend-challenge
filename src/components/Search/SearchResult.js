@@ -48,7 +48,7 @@ export default function SearchResult(props) {
       Poster: props.Poster,
     };
     props.addNomination(newNomination);
-    props.getNominations();
+    // props.getNominations();
   }
   function AddButton() {
     if (!props.nominations.find((nom) => nom.imdbID === props.imdbID)) {

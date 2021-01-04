@@ -33,7 +33,7 @@ export default function NominationCard(props) {
   const classes = useStyles();
   function handleClick() {
     props.removeNomination(props.imdbID);
-    props.getNominations();
+    // props.getNominations();
   }
   return (
     <Card className={classes.root}>
