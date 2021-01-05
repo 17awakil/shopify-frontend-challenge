@@ -40,6 +40,10 @@ export default function SearchResult(props) {
   const [open, setOpen] = React.useState(false);
 
   function handleAdd() {
+<<<<<<< HEAD
+=======
+    console.log("handle add");
+>>>>>>> 414cfb594998f4a1e27d75188d2632512b0e07cf
     const newNomination = {
       Title: props.Title,
       Year: props.Year,

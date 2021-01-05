@@ -12,6 +12,19 @@ function App(props) {
   function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
   }
+<<<<<<< HEAD
+=======
+  const [open, setOpen] = useState(false);
+  const [close, setClose] = useState(false);
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+    setClose(true);
+  };
+
+>>>>>>> 414cfb594998f4a1e27d75188d2632512b0e07cf
   return (
     <div className="wrapper App">
       <section className="navbar">
@@ -27,8 +40,19 @@ function App(props) {
           <Search></Search>
         </section>
       </div>
+<<<<<<< HEAD
       <Snackbar open={props.nominations?.length === 5} autoHideDuration={6000}>
         <Alert severity="success">You have nominated five movies!</Alert>
+=======
+      <Snackbar
+        open={props.nominations?.length === 5}
+        autoHideDuration={6000}
+        onClose={handleClose}
+      >
+        <Alert onClose={handleClose} severity="success">
+          You have nominated five movies!
+        </Alert>
+>>>>>>> 414cfb594998f4a1e27d75188d2632512b0e07cf
       </Snackbar>
     </div>
   );

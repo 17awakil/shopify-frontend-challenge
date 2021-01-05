@@ -18,7 +18,10 @@ body {
 
 .nominations {
   grid-area: nominations;
+<<<<<<< HEAD
   height: 530px;
+=======
+>>>>>>> 414cfb594998f4a1e27d75188d2632512b0e07cf
 }
 
 .search {
@@ -33,6 +36,9 @@ body {
       "nominations"
       "search";
   }
+<<<<<<< HEAD
   .nominations {
   }
+=======
+>>>>>>> 414cfb594998f4a1e27d75188d2632512b0e07cf
 }
