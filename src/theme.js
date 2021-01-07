@@ -20,13 +20,6 @@ const theme = createMuiTheme({
   typography: {
     fontFamily: [firaSans],
   },
-  //   overrides: {
-  //     MuiCssBaseline: {
-  //       "@global": {
-  //         "@font-face": [firaSans],
-  //       },
-  //     },
-  //   },
 });
 
 export default theme;

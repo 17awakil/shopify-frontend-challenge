@@ -11,15 +11,16 @@ import RemoveIcon from "@material-ui/icons/Remove";
 const useStyles = makeStyles({
   root: {
     display: "flex",
-    // justifyContent: "space-between",
     margin: "5px",
     alignItems: "center",
+    padding: "5px",
+  },
+  index: {
     padding: "5px",
   },
   image: {
     width: "45px",
     padding: "5px",
-    // flexGrow: 1,
   },
   content: {
     padding: "4px",
@@ -33,11 +34,11 @@ export default function NominationCard(props) {
   const classes = useStyles();
   function handleClick() {
     props.removeNomination(props.imdbID);
-    // props.getNominations();
   }
+
   return (
     <Card className={classes.root}>
-      <div style={{ padding: "5px" }}>
+      <div className={classes.index}>
         <Typography variant="body1">{props.number + 1}</Typography>
       </div>
       <CardMedia

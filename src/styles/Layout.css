@@ -1,10 +1,19 @@
-/* .wrapper {
-  display: grid;
-} */
+html,
+body,
+#root,
+.App {
+  height: 100%;
+}
 
 body {
   background-color: #fbf7ed;
 }
+
+.wrapper {
+  text-align: center;
+  height: 100%;
+}
+
 .navbar {
   grid-area: navbar;
   background: #008060;
@@ -18,12 +27,15 @@ body {
 
 .nominations {
   grid-area: nominations;
-  height: 530px;
+  height: 600px;
 }
 
 .search {
   grid-area: search;
+  height: 560px;
+  max-height: 600px;
 }
+
 /* Media Queries */
 @media (max-width: 700px) {
   /* For mobile phones: */
@@ -32,5 +44,8 @@ body {
     grid-template-areas:
       "nominations"
       "search";
+  }
+  .nominations {
+    height: 350px;
   }
 }

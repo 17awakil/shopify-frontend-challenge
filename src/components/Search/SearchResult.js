@@ -4,12 +4,9 @@ import {
   CardMedia,
   CardContent,
   Typography,
-  IconButton,
   makeStyles,
-  Snackbar,
 } from "@material-ui/core";
-import AddRoundedIcon from "@material-ui/icons/AddRounded";
-import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
+import AddButton from "./AddButton";
 const useStyles = makeStyles({
   root: {
     margin: "auto",
@@ -31,44 +28,15 @@ const useStyles = makeStyles({
   buttonWrapper: {
     display: "flex",
   },
-  buttons: {
-    justifySelf: "flex-end",
-  },
 });
+
+/**
+ * Represents a movie result found from a movie search
+ * @param {Array} props
+ *
+ */
 export default function SearchResult(props) {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-
-  function handleAdd() {
-    const newNomination = {
-      Title: props.Title,
-      Year: props.Year,
-      imdbID: props.imdbID,
-      Poster: props.Poster,
-    };
-    props.addNomination(newNomination);
-    // props.getNominations();
-  }
-  function AddButton() {
-    if (!props.nominations.find((nom) => nom.imdbID === props.imdbID)) {
-      return (
-        <div className={classes.buttonWrapper}>
-          <IconButton onClick={handleAdd} title="Nominate Movie">
-            <AddRoundedIcon></AddRoundedIcon>
-          </IconButton>
-        </div>
-      );
-    } else {
-      return (
-        <div className={classes.buttonWrapper}>
-          <IconButton disabled title="Already nominated">
-            <CheckRoundedIcon></CheckRoundedIcon>
-          </IconButton>
-        </div>
-      );
-    }
-  }
-
   return (
     <Card className={classes.root}>
       <CardMedia
@@ -82,7 +50,14 @@ export default function SearchResult(props) {
         <Typography variant="body1">{props.Title}</Typography>
         <Typography variant="subtitle1">({props.Year})</Typography>
       </CardContent>
-      <AddButton></AddButton>
+      <AddButton
+        Title={props.Title}
+        Year={props.Year}
+        Poster={props.Poster}
+        imdbID={props.imdbID}
+        addNomination={props.addNomination}
+        nominations={props.nominations}
+      ></AddButton>
     </Card>
   );
 }

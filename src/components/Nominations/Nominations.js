@@ -15,9 +15,18 @@ const useStyles = makeStyles({
     margin: "auto",
     padding: "1em",
     justifyContent: "space-around",
+    height: "inherit",
+  },
+  nominationsWrapper: {
+    height: "inherit",
+    overflow: "auto",
   },
 });
 
+/**
+ * Nominations section that includes all the nominations for the user
+ * @param {Array} props
+ */
 function Nominations(props) {
   const classes = useStyles();
   var list = [];
@@ -40,10 +49,10 @@ function Nominations(props) {
   }
   return (
     <div className={classes.root}>
-      <Typography variant="h5" style={{ padding: "0.5em" }}>
+      <Typography variant="h5" style={{ padding: "1em" }}>
         Nominations
       </Typography>
-      {list}
+      <div className={classes.nominationsWrapper}>{list}</div>
     </div>
   );
 }

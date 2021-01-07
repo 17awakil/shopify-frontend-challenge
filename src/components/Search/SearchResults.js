@@ -1,29 +1,31 @@
 import React from "react";
 import { Grid, Typography, makeStyles } from "@material-ui/core";
 import SearchResult from "./SearchResult";
-// import useMediaQuery from "@material-ui/core/useMediaQuery";
-// import json2mq from "json2mq";
-
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginTop: "1em",
     width: "100%",
-    // background: "#ddd",
+    height: "inherit",
     padding: "1em",
-    // borderRadius: "25px",
+    position: "relative",
   },
   results: {
     display: "grid",
     gridTemplateColumns: "repeat(auto-fit,minmax(130px,1fr))",
     rowGap: "1em",
-    columnGap: ".5em",
+    columnGap: ".75em",
     overflowY: "auto",
-    paddingBottom: "1em",
+    height: "100%",
+    width: "100%",
   },
   paper: {
     padding: "1em",
   },
 }));
+
+/**
+ * The grid in which all search results are displayed for the user to nominate
+ * @param {Array} props
+ */
 function SearchResults(props) {
   const classes = useStyles();
   if (props.movies !== undefined) {
@@ -33,19 +35,19 @@ function SearchResults(props) {
           Title={mov.Title}
           Year={mov.Year}
           Poster={mov.Poster}
-          // key={mov.imdbID}
           imdbID={mov.imdbID}
-          addNomination={props.addNomination}
-          removeNomination={props.removeNomination}
           getNominations={props.getNominations}
           nominations={props.nominations}
+          addNomination={props.addNomination}
         ></SearchResult>
       </Grid>
     ));
   }
   return (
     <div className={classes.root}>
-      <Typography>Search results...</Typography>
+      <Typography style={{ paddingBottom: "1em" }}>
+        Search results...
+      </Typography>
       <Grid container className={classes.results}>
         {list}
       </Grid>

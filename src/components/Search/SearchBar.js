@@ -2,13 +2,16 @@ import { React } from "react";
 import { makeStyles } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 import InputBase from "@material-ui/core/InputBase";
-// import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
-// import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
-// import DirectionsIcon from "@material-ui/icons/Directions";
 
 const useStyles = makeStyles((theme) => ({
+  wrapper: {
+    width: "100%",
+    justifySelf: "center",
+    alignSelf: "center",
+    paddingTop: "0.5em",
+  },
   root: {
     padding: "2px 4px",
     display: "flex",
@@ -23,23 +26,22 @@ const useStyles = makeStyles((theme) => ({
   iconButton: {
     padding: 10,
   },
-  divider: {
-    height: 28,
-    margin: 4,
-  },
 }));
 
+/**
+ * Represents search bar where user can search for movies to nominate
+ * @param {Array} props
+ */
 export default function SearchBar(props) {
   const classes = useStyles();
   return (
-    <div style={{ width: "100%", justifySelf: "center", alignSelf: "center" }}>
+    <div className={classes.wrapper}>
       <Paper component="form" className={classes.root}>
         <InputBase
           className={classes.input}
           placeholder="Search Movies"
           inputProps={{ "aria-label": "search movies" }}
           onChange={(e) => props.onSubmit(e.target.value)}
-          // onKeyUp={handleKeyPress}
         />
         <IconButton
           type="submit"
