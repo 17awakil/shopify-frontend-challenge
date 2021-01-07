@@ -30,8 +30,14 @@ const useStyles = makeStyles({
     alignSelf: "center",
   },
 });
+/**
+ * Card that represents a nominated movie
+ * @param {Array} props
+ */
 export default function NominationCard(props) {
   const classes = useStyles();
+
+  // Movie can be removed from nominations if user changes mind
   function handleClick() {
     props.removeNomination(props.imdbID);
   }
