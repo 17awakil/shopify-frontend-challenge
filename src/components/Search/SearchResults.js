@@ -1,10 +1,10 @@
 import React from "react";
 import { Grid, Typography, makeStyles } from "@material-ui/core";
 import SearchResult from "./SearchResult";
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     width: "100%",
-    height: "inherit",
+    height: "400px",
     padding: "1em",
     position: "relative",
   },
@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     gridTemplateColumns: "repeat(auto-fit,minmax(130px,1fr))",
     rowGap: "1em",
     columnGap: ".75em",
-    overflowY: "auto",
+    overflow: "auto",
     height: "100%",
     width: "100%",
   },

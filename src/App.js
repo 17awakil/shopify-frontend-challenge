@@ -17,13 +17,21 @@ function App(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
   }
   const [open, setOpen] = useState(false);
+  const [snackbarWasClosed, setSnackbarWasClosed] = useState(false);
+
   useEffect(() => {
-    if (props.nominations?.length === 5) setOpen(true);
-    else setOpen(false);
+    if (props.nominations?.length === 5 && !snackbarWasClosed) {
+      setOpen(true);
+    } else if (props.nominations?.length === 5 && snackbarWasClosed) {
+      setOpen(false);
+    } else {
+      setSnackbarWasClosed(false);
+      setOpen(false);
+    }
   });
 
   const handleClose = () => {
-    setOpen(false);
+    setSnackbarWasClosed(true);
   };
 
   return (
@@ -42,7 +50,9 @@ function App(props) {
         </section>
       </div>
       <Snackbar open={open} autoHideDuration={2000} handleClose={handleClose}>
-        <Alert severity="success">You have nominated five movies!</Alert>
+        <Alert onClose={handleClose} severity="success">
+          You have nominated five movies!
+        </Alert>
       </Snackbar>
     </div>
   );
