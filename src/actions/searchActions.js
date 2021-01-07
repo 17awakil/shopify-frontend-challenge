@@ -1,9 +1,12 @@
 import axios from "axios";
 import { GET_MOVIES, MOVIES_LOADING } from "./types";
+import keys from "../config/key";
 
 export const getMovies = (movieQuery) => (dispatch) => {
   axios
-    .get(`https://www.omdbapi.com/?apiKey=e8c6c16e&type=movie&s=${movieQuery}`)
+    .get(
+      `https://www.omdbapi.com/?apiKey=${keys.apiKey}&type=movie&s=${movieQuery}`
+    )
     .then((movies) => {
       dispatch({ type: GET_MOVIES, payload: movies.data.Search });
     })
