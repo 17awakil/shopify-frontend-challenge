@@ -1,4 +1,4 @@
-import { React } from "react";
+import { React, useState } from "react";
 import { makeStyles } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 import InputBase from "@material-ui/core/InputBase";
@@ -41,13 +41,15 @@ export default function SearchBar(props) {
           className={classes.input}
           placeholder="Search Movies"
           inputProps={{ "aria-label": "search movies" }}
-          onChange={(e) => props.onSubmit(e.target.value)}
+          onChange={(e) => {
+            e.preventDefault();
+            props.onSubmit(e.target.value);
+          }}
         />
         <IconButton
           type="submit"
           className={classes.iconButton}
           aria-label="search"
-          disabled
         >
           <SearchIcon />
         </IconButton>

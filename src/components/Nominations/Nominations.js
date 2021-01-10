@@ -1,5 +1,5 @@
 import { React, useEffect } from "react";
-import { Typography, makeStyles } from "@material-ui/core";
+import { Typography, makeStyles, Paper } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
@@ -12,10 +12,14 @@ const useStyles = makeStyles({
   root: {
     display: "flex",
     flexDirection: "column",
-    margin: "auto",
     padding: "1em",
     justifyContent: "space-around",
     height: "inherit",
+    backgroundColor: "#e6f6e8",
+    marginTop: "2em",
+    marginBottom: "2em",
+    marginRight: "1em",
+    marginLeft: "1em",
   },
   nominationsWrapper: {
     height: "inherit",
@@ -48,12 +52,12 @@ function Nominations(props) {
     ));
   }
   return (
-    <div className={classes.root}>
+    <Paper className={classes.root}>
       <Typography variant="h5" style={{ padding: "1em" }}>
         Nominations
       </Typography>
       <div className={classes.nominationsWrapper}>{list}</div>
-    </div>
+    </Paper>
   );
 }
 

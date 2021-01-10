@@ -1,12 +1,13 @@
 import React from "react";
-import { Grid, Typography, makeStyles } from "@material-ui/core";
+import { Grid, Typography, makeStyles, IconButton } from "@material-ui/core";
+import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
+import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import SearchResult from "./SearchResult";
 const useStyles = makeStyles(() => ({
   root: {
     width: "100%",
-    height: "400px",
+    height: "370px",
     padding: "1em",
-    position: "relative",
   },
   results: {
     display: "grid",
@@ -19,6 +20,11 @@ const useStyles = makeStyles(() => ({
   },
   paper: {
     padding: "1em",
+  },
+  pages: {
+    display: "flex",
+    justifyContent: "space-around",
+    padding: ".5em",
   },
 }));
 
@@ -45,9 +51,7 @@ function SearchResults(props) {
   }
   return (
     <div className={classes.root}>
-      <Typography style={{ paddingBottom: "1em" }}>
-        Search results...
-      </Typography>
+      <Typography style={{ padding: "0.75em" }}>Search results...</Typography>
       <Grid container className={classes.results}>
         {list}
       </Grid>
