@@ -34,7 +34,6 @@ function Search(props) {
         getNominations={props.getNominations}
         nominations={props.nominations}
         addNomination={props.addNomination}
-        removeNomination={props.removeNomination}
       ></SearchResults>
     </div>
   );
